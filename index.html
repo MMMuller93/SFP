@@ -1,314 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strategic Fund Partners - Fund Advisory & Regulatory Strategy</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --black: #000000; --charcoal-deep: #0a0a0a; --charcoal: #171717; --charcoal-light: #262626;
-            --gray-dark: #404040; --gray: #737373; --gray-light: #a3a3a3;
-            --silver: #d4d4d8; --silver-light: #e4e4e7; --white: #ffffff; --white-soft: #fafafa;
-            --gold: #d4af37; --gold-light: #f4e677; --gold-dark: #b8941f;
-            --gold-gradient: linear-gradient(135deg, #f4e677 0%, #d4af37 25%, #b8941f 50%, #d4af37 75%, #f4e677 100%);
-            --silver-gradient: linear-gradient(135deg, #ffffff 0%, #d4d4d8 25%, #a3a3a3 50%, #e4e4e7 75%, #ffffff 100%);
-        }
-        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; line-height: 1.6; color: var(--white); background: var(--black); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-        h1, h2, h3, h4, h5, h6 { font-family: 'EB Garamond', serif; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strategic Fund Partners - Fund Advisory & Regulatory Strategy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ====== RESET & TOKENS ====== */
+    *,*::before,*::after{box-sizing:border-box}
+    *{margin:0;padding:0}
+    :root{
+      --black:#000000; --charcoal-deep:#0a0a0a; --charcoal:#171717; --charcoal-light:#262626;
+      --gray-dark:#404040; --gray:#737373; --gray-light:#a3a3a3;
+      --silver:#d4d4d8; --silver-light:#e4e4e7; --white:#ffffff; --white-soft:#fafafa;
+      --gold:#d4af37; --gold-light:#f4e677; --gold-dark:#b8941f;
+      --gold-gradient: linear-gradient(135deg,#f4e677 0%,#d4af37 25%,#b8941f 50%,#d4af37 75%,#f4e677 100%);
+      --silver-gradient: linear-gradient(135deg,#ffffff 0%,#d4d4d8 25%,#a3a3a3 50%,#e4e4e7 75%,#ffffff 100%);
+    }
+    body{font-family:Inter,system-ui,-apple-system,sans-serif;line-height:1.6;color:var(--white);background:var(--black);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    h1,h2,h3,h4,h5,h6{font-family:'EB Garamond',serif}
 
-        /* Navigation */
-        .nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.06); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03), 0 4px 20px rgba(0, 0, 0, 0.5); z-index: 1000; padding: 1.5rem 0; }
-        .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 4rem; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'EB Garamond', serif; font-weight: 600; font-size: 1.625rem; color: var(--silver); letter-spacing: -0.02em; }
-        .nav-links { display: flex; gap: 3.5rem; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--gray-light); font-weight: 500; font-size: 0.9375rem; transition: color 0.3s ease; letter-spacing: -0.005em; }
-        .nav-links a:hover { color: var(--white); }
-        .cta-nav { background: var(--gold-gradient); color: var(--black); padding: 0.875rem 2rem; border-radius: 1px; text-decoration: none; font-weight: 600; font-size: 0.9375rem; transition: all 0.3s ease; letter-spacing: -0.01em; position: relative; overflow: hidden; box-shadow: 0 3px 12px rgba(212, 175, 55, 0.25), 0 1px 6px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15); }
-        .cta-nav::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent); transition: left 0.5s ease; }
-        .cta-nav:hover { transform: translateY(-1px); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3); }
-        .cta-nav:hover::before { left: 100%; }
+    /* ====== ONE-SURFACE BACKGROUND (removes seams) ====== */
+    /* Draw the entire page surface once; sections are transparent. */
+    body::after{
+      content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+      background:
+        linear-gradient(135deg, var(--charcoal) 0%, rgba(38,38,38,.95) 30%, var(--charcoal-deep) 70%, var(--black) 100%),
+        radial-gradient(ellipse at 20% 30%, rgba(212,212,216,.04) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 70%, rgba(64,64,64,.6) 0%, transparent 50%),
+        repeating-linear-gradient(120deg, rgba(255,255,255,.006) 0 2px, transparent 2px 100px);
+    }
 
-        /* Hero */
-        .hero { padding: 10rem 0 8rem; background: linear-gradient(135deg, var(--charcoal-deep) 0%, rgba(23, 23, 23, 0.95) 25%, var(--black) 75%), radial-gradient(ellipse at 30% 20%, rgba(212, 212, 216, 0.06) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(38, 38, 38, 0.3) 0%, transparent 60%); position: relative; overflow: hidden; }
-        .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 25% 25%, rgba(212, 212, 216, 0.08) 0%, transparent 30%), radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.03) 0%, transparent 40%), linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.015) 50%, transparent 100%); pointer-events: none; }
-        .hero::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 150px, rgba(255, 255, 255, 0.008) 150px, rgba(255, 255, 255, 0.008) 152px), conic-gradient(from 0deg at 20% 80%, transparent 0deg, rgba(212, 212, 216, 0.04) 90deg, transparent 180deg, rgba(255, 255, 255, 0.02) 270deg, transparent 360deg); pointer-events: none; opacity: 0.7; }
-        .hero-container { max-width: 1400px; margin: 0 auto; padding: 0 4rem; position: relative; z-index: 1; }
-        .hero-content { max-width: 900px; margin: 0 auto; text-align: center; }
-        .hero-title { font-size: 4rem; font-weight: 600; line-height: 1.1; margin-bottom: 2rem; background: var(--silver-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.025em; max-width: 800px; margin-left: auto; margin-right: auto; }
-        .hero-subtitle, .hero-sub { font-size: 1.25rem; color: var(--gray-light); font-weight: 400; line-height: 1.6; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; letter-spacing: -0.01em; }
-        .hero-cta { display: flex; gap: 2rem; justify-content: center; align-items: center; }
+    /* ====== NAV ====== */
+    .nav{position:fixed;top:0;left:0;right:0;background:rgba(0,0,0,.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06);box-shadow:0 1px 0 rgba(255,255,255,.03),0 4px 20px rgba(0,0,0,.5);z-index:1000;padding:1.5rem 0}
+    .nav-container{max-width:1400px;margin:0 auto;padding:0 4rem;display:flex;justify-content:space-between;align-items:center}
+    .logo{font-family:'EB Garamond',serif;font-weight:600;font-size:1.625rem;color:var(--silver);letter-spacing:-.02em}
+    .nav-links{display:flex;gap:3.5rem;list-style:none}
+    .nav-links a{text-decoration:none;color:var(--gray-light);font-weight:500;font-size:.9375rem;transition:color .3s ease;letter-spacing:-.005em}
+    .nav-links a:hover{color:var(--white)}
+    .cta-nav{background:var(--gold-gradient);color:var(--black);padding:.875rem 2rem;border-radius:1px;text-decoration:none;font-weight:600;font-size:.9375rem;transition:all .3s ease;letter-spacing:-.01em;position:relative;overflow:hidden}
+    .cta-nav::before{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);transition:left .5s ease}
+    .cta-nav:hover{transform:translateY(-1px);box-shadow:0 8px 25px rgba(212,175,55,.3)}
+    .cta-nav:hover::before{left:100%}
 
-        /* Buttons */
-        .btn-primary { background: var(--gold-gradient); color: var(--black); padding: 1rem 2.5rem; border-radius: 1px; text-decoration: none; font-weight: 600; font-size: 0.9375rem; transition: all 0.3s ease; border: none; cursor: pointer; letter-spacing: -0.01em; position: relative; overflow: hidden; display: inline-block; box-shadow: 0 12px 30px rgba(212, 175, 55, 0.3); }
-        .btn-primary::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent); transition: left 0.5s ease; }
-        .btn-primary:hover { transform: translateY(-2px); }
-        .btn-primary:hover::before { left: 100%; }
-        .btn-secondary { color: var(--white); padding: 1rem 2.5rem; border-radius: 1px; text-decoration: none; font-weight: 600; font-size: 0.9375rem; border: 2px solid rgba(255, 255, 255, 0.15); background: transparent; transition: all 0.3s ease; letter-spacing: -0.01em; display: inline-block; }
-        .btn-secondary:hover { border-color: var(--gold); background: rgba(212, 175, 55, 0.1); color: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2); }
+    /* ====== HERO / SERVICES / CONTACT (transparent; rely on body::after) ====== */
+    .hero,.services,.contact{position:relative;overflow:hidden;background:transparent}
+    .hero::before,.hero::after,.services::before,.services::after,.contact::before,.contact::after{content:none}
 
-        /* Services */
-        .services { padding: 8rem 0; background: linear-gradient(135deg, var(--charcoal) 0%, rgba(38, 38, 38, 0.95) 30%, var(--charcoal-deep) 70%, var(--black) 100%), radial-gradient(ellipse at 20% 30%, rgba(212, 212, 216, 0.04) 0%, transparent 60%), radial-gradient(ellipse at 80% 70%, rgba(64, 64, 64, 0.6) 0%, transparent 50%); position: relative; overflow: hidden; }
-        .services::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.25) 10%, transparent 40%, transparent 85%, rgba(10,10,10,0.6) 100%), repeating-linear-gradient(120deg, transparent, transparent 100px, rgba(255, 255, 255, 0.006) 100px, rgba(255, 255, 255, 0.006) 102px); pointer-events: none; }
-        .services::after { content: ''; position: absolute; top: -30%; left: -20%; right: -20%; bottom: -30%; background: conic-gradient(from 45deg at 70% 30%, transparent 0deg, rgba(212, 212, 216, 0.025) 60deg, transparent 120deg, rgba(255, 255, 255, 0.015) 180deg, transparent 240deg, rgba(163, 163, 163, 0.02) 300deg, transparent 360deg); pointer-events: none; opacity: 0.6; }
-        .services-container, .wrap { max-width: 1400px; margin: 0 auto; padding: 0 4rem; position: relative; z-index: 1; }
-        .section-header, .section-head { text-align: center; margin-bottom: 6rem; }
-        .section-title { font-size: 3rem; font-weight: 600; color: var(--white); margin-bottom: 1.5rem; letter-spacing: -0.02em; }
-        .section-subtitle, .section-sub { font-size: 1.1875rem; color: var(--gray-light); max-width: 600px; margin: 0 auto; letter-spacing: -0.01em; line-height: 1.5; }
-        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; }
-        .service-card { padding: 3rem 2.5rem; border-radius: 2px; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04); }
-        .service-card:nth-child(1){ background: linear-gradient(135deg, rgba(212, 212, 216, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%), radial-gradient(circle at 80% 20%, rgba(212, 212, 216, 0.06) 0%, transparent 50%); border: 1px solid rgba(212, 212, 216, 0.1); }
-        .service-card:nth-child(2){ background: linear-gradient(135deg, rgba(64, 64, 64, 0.4) 0%, rgba(38, 38, 38, 0.6) 50%, rgba(255, 255, 255, 0.01) 100%), radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 60%); border: 1px solid rgba(255, 255, 255, 0.08); }
-        .service-card:nth-child(3){ background: linear-gradient(135deg, rgba(23, 23, 23, 0.8) 0%, rgba(38, 38, 38, 0.6) 50%, rgba(255, 255, 255, 0.01) 100%), radial-gradient(circle at 70% 30%, rgba(212, 212, 216, 0.05) 0%, transparent 50%); border: 1px solid rgba(212, 212, 216, 0.08); }
-        .service-card:nth-child(4){ background: linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(23, 23, 23, 0.8) 50%, rgba(255, 255, 255, 0.01) 100%), radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.02) 0%, transparent 60%); border: 1px solid rgba(255, 255, 255, 0.06); }
-        .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gold-gradient); transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-        .service-card:hover::before { transform: scaleX(1); }
-        .service-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 30px 60px rgba(0,0,0,.8), 0 15px 30px rgba(255,255,255,.05); }
-        .service-icon { width: 3.5rem; height: 3.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; position: relative; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .service-icon::before { content: ''; position: absolute; inset: 0; border-radius: 2px; border: 2px solid rgba(212, 175, 55, 0.3); background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, transparent 70%); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .service-card:hover .service-icon::before { border-color: var(--gold); box-shadow: 0 0 30px rgba(212, 175, 55, 0.2); }
-        .service-card:hover .service-icon { transform: scale(1.05); }
-        .service-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: var(--white); letter-spacing: -0.01em; line-height: 1.3; }
-        .service-desc { color: var(--gray-light); line-height: 1.6; font-size: 1rem; letter-spacing: -0.005em; }
+    .hero{padding:10rem 0 8rem}
+    .hero-container{max-width:1400px;margin:0 auto;padding:0 4rem;position:relative;z-index:1}
+    .hero-content{max-width:900px;margin:0 auto;text-align:center}
+    .hero-title{font-size:4rem;font-weight:600;line-height:1.18;margin-bottom:2rem;padding-bottom:.25em;display:inline-block;background:var(--silver-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.025em;max-width:800px;margin-left:auto;margin-right:auto;overflow:visible;-webkit-text-stroke:0.001em transparent}
+    .hero-subtitle{font-family:Inter,system-ui,-apple-system,sans-serif;font-size:1rem;color:var(--gray-light);font-weight:400;line-height:1.6;margin-bottom:3rem;max-width:600px;margin-left:auto;margin-right:auto;letter-spacing:-.005em}
+    .hero-cta{display:flex;gap:2rem;justify-content:center;align-items:center}
+    .btn-primary{background:var(--gold-gradient);color:var(--black);padding:1rem 2.5rem;border-radius:1px;text-decoration:none;font-weight:600;font-size:.9375rem;transition:all .3s ease;border:none;cursor:pointer;letter-spacing:-.01em;position:relative;overflow:hidden;display:inline-block;box-shadow:0 12px 30px rgba(212,175,55,.3)}
+    .btn-primary::before{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);transition:left .5s ease}
+    .btn-primary:hover{transform:translateY(-2px)}
+    .btn-primary:hover::before{left:100%}
+    .btn-secondary{color:var(--white);padding:1rem 2.5rem;border-radius:1px;text-decoration:none;font-weight:600;font-size:.9375rem;border:2px solid rgba(255,255,255,.15);background:transparent;transition:all .3s ease;letter-spacing:-.01em;display:inline-block}
+    .btn-secondary:hover{border-color:var(--gold);background:rgba(212,175,55,.1);color:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 20px rgba(212,175,55,.2)}
 
-        /* Contact */
-        .contact { padding: 8rem 0; background: linear-gradient(135deg, var(--charcoal-deep) 0%, rgba(10, 10, 10, 0.98) 30%, var(--charcoal) 70%, var(--black) 100%), radial-gradient(ellipse at 20% 20%, rgba(212, 212, 216, 0.08) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(64, 64, 64, 0.4) 0%, transparent 60%); position: relative; overflow: hidden; }
-        .contact::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 12%, transparent 45%), linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.01) 25%, transparent 50%, rgba(212, 212, 216, 0.015) 75%, transparent 100%); pointer-events: none; }
-        .contact::after { content: ''; position: absolute; top: -40%; left: -30%; right: -30%; bottom: -40%; background: conic-gradient(from 270deg at 60% 40%, transparent 0deg, rgba(212, 212, 216, 0.04) 45deg, transparent 90deg, rgba(255, 255, 255, 0.02) 180deg, transparent 225deg, rgba(163, 163, 163, 0.025) 315deg, transparent 360deg); pointer-events: none; opacity: 0.8; }
-        .contact-container, .contact-inner { max-width: 900px; margin: 0 auto; padding: 0 4rem; text-align: center; position: relative; z-index: 1; }
-        .contact-title, .contact h2 { font-size: 3rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--white); letter-spacing: -0.02em; }
-        .contact-subtitle, .contact p { font-size: 1.1875rem; color: var(--gray-light); margin-bottom: 3rem; letter-spacing: -0.01em; line-height: 1.5; }
+    /* ====== SERVICES ====== */
+    .services{padding:8rem 0}
+    .services-container{max-width:1400px;margin:0 auto;padding:0 4rem;position:relative;z-index:1}
+    .section-header{text-align:center;margin-bottom:6rem}
+    .section-title{font-size:3rem;font-weight:600;color:var(--white);margin-bottom:1.5rem;letter-spacing:-.02em}
+    .section-subtitle{font-family:Inter,system-ui,-apple-system,sans-serif;font-size:1rem;color:var(--gray-light);max-width:600px;margin:0 auto;letter-spacing:-.005em;line-height:1.6}
+    .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:3rem}
+    .service-card{padding:3rem 2.5rem;border-radius:2px;position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s cubic-bezier(.4,0,.2,1), border-color .35s ease;box-shadow:0 8px 32px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.04);background:linear-gradient(135deg, rgba(212,212,216,.03) 0%, rgba(255,255,255,.01) 100%), radial-gradient(circle at 80% 20%, rgba(212,212,216,.06) 0%, transparent 50%);border:1px solid rgba(212,212,216,.1)}
+    .service-card:nth-child(2){background:linear-gradient(135deg, rgba(64,64,64,.4) 0%, rgba(38,38,38,.6) 50%, rgba(255,255,255,.01) 100%), radial-gradient(circle at 20% 80%, rgba(255,255,255,.03) 0%, transparent 60%);border:1px solid rgba(255,255,255,.08)}
+    .service-card:nth-child(3){background:linear-gradient(135deg, rgba(23,23,23,.8) 0%, rgba(38,38,38,.6) 50%, rgba(255,255,255,.01) 100%), radial-gradient(circle at 70% 30%, rgba(212,212,216,.05) 0%, transparent 50%);border:1px solid rgba(212,212,216,.08)}
+    .service-card:nth-child(4){background:linear-gradient(135deg, rgba(10,10,10,.95) 0%, rgba(23,23,23,.8) 50%, rgba(255,255,255,.01) 100%), radial-gradient(circle at 30% 70%, rgba(255,255,255,.02) 0%, transparent 60%);border:1px solid rgba(255,255,255,.06)}
+    .service-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold-gradient);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+    .service-card:hover::before{transform:scaleX(1)}
+    .service-icon{width:3.5rem;height:3.5rem;display:flex;align-items:center;justify-content:center;margin-bottom:2rem;position:relative;transition:all .4s cubic-bezier(.4,0,.2,1)}
+    .service-icon::before{content:"";position:absolute;inset:0;border-radius:2px;border:2px solid rgba(212,175,55,.3);background:linear-gradient(135deg, rgba(212,175,55,.05) 0%, transparent 70%);transition:all .4s cubic-bezier(.4,0,.2,1)}
+    .service-card:hover{transform:translateY(-10px) scale(1.01);box-shadow:0 40px 80px rgba(0,0,0,.8),0 20px 40px rgba(212,175,55,.06),inset 0 1px 0 rgba(212,175,55,.08);border-color:rgba(212,175,55,.2)}
+    .service-card:hover .service-icon::before{border-color:var(--gold);box-shadow:0 0 30px rgba(212,175,55,.2)}
+    .service-title{font-size:1.5rem;font-weight:600;margin-bottom:1rem;color:#fff;letter-spacing:-.01em;line-height:1.3}
+    .service-desc{font-family:Inter,system-ui,-apple-system,sans-serif;color:var(--gray-light);line-height:1.6;font-size:1rem;letter-spacing:-.005em}
 
-        /* Footer */
-        .footer { background: linear-gradient(135deg, var(--black) 0%, rgba(5, 5, 5, 0.99) 50%, var(--black) 100%), radial-gradient(ellipse at 20% 50%, rgba(212, 212, 216, 0.02) 0%, transparent 60%); color: var(--gray-light); padding: 4rem 0 3rem; border-top: 1px solid rgba(255, 255, 255, 0.04); position: relative; overflow: hidden; }
-        .footer-container, .footer .inner { max-width: 1400px; margin: 0 auto; padding: 0 4rem; }
-        .footer-content, .footer-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
-        .footer-title { font-family: 'EB Garamond', serif; font-weight: 600; font-size: 1.5rem; color: var(--silver); letter-spacing: -0.02em; }
-        .footer-contact { color: var(--gray-light); font-size: 1rem; letter-spacing: -0.01em; }
-        .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.04); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; color: var(--gray); font-size: 0.875rem; }
-/* footer links hover state (clickable, not gold) */
-.footer-link { color: var(--gray-light); text-decoration: underline; cursor: pointer; transition: color .25s ease; font-size: .9rem; }
-.footer-link:hover, .footer-link:focus-visible { color: var(--white); outline: none; }
+    /* ====== CONTACT ====== */
+    .contact{padding:8rem 0}
+    .contact-container{max-width:900px;margin:0 auto;padding:0 4rem;text-align:center;position:relative;z-index:1}
+    .contact-title{font-size:3rem;font-weight:600;margin-bottom:1.5rem;color:var(--white);letter-spacing:-.02em}
+    .contact-subtitle{font-family:Inter,system-ui,-apple-system,sans-serif;font-size:1rem;color:var(--gray-light);margin-bottom:3rem;letter-spacing:-.005em;line-height:1.6}
 
-        /* Privacy Slide-in */
-        .privacy-panel { position: fixed; top: 0; right: -100%; width: 100%; max-width: 600px; height: 100vh; background: linear-gradient(135deg, var(--charcoal-deep) 0%, rgba(10, 10, 10, 0.98) 50%, var(--black) 100%), radial-gradient(ellipse at 20% 30%, rgba(212, 175, 55, 0.05) 0%, transparent 60%); border-left: 1px solid rgba(212, 175, 55, 0.2); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 2000; transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); overflow-y: auto; padding: 3rem; box-shadow: -20px 0 40px rgba(0, 0, 0, 0.8); }
-        .privacy-panel.open { right: 0; }
-        .privacy-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); z-index: 1999; opacity: 0; visibility: hidden; transition: all 0.4s ease; }
-        .privacy-overlay.open { opacity: 1; visibility: visible; }
-        .privacy-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
-        .privacy-title { font-family: 'EB Garamond', serif; font-size: 2.5rem; font-weight: 600; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .close-btn { background: none; border: 2px solid rgba(212, 175, 55, 0.3); color: var(--gold); width: 40px; height: 40px; border-radius: 2px; cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
-        .close-btn:hover { border-color: var(--gold); background: rgba(212, 175, 55, 0.1); }
-        .privacy-content { color: var(--gray-light); line-height: 1.6; }
-        .privacy-content h4 { color: var(--gold-light); font-weight: 600; margin: 1.5rem 0 0.75rem 0; }
-        .privacy-content p { margin-bottom: 1rem; }
-        .privacy-content ul { margin: 1rem 0; padding-left: 1.5rem; }
-        .privacy-content li { margin-bottom: 0.5rem; }
+    /* ====== FOOTER ====== */
+    .footer{background:linear-gradient(135deg,var(--black) 0%, rgba(5,5,5,.99) 50%, var(--black) 100%), radial-gradient(ellipse at 20% 50%, rgba(212,212,216,.02) 0%, transparent 60%);color:var(--gray-light);padding:4rem 0 3rem;border-top:1px solid rgba(255,255,255,.04)}
+    .footer-container{max-width:1400px;margin:0 auto;padding:0 4rem}
+    .footer-content{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem}
+    .footer-title{font-family:'EB Garamond',serif;font-weight:600;font-size:1.5rem;color:var(--silver);letter-spacing:-.02em}
+    .footer-contact{color:var(--gray-light);font-size:1rem;letter-spacing:-.01em}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.04);padding-top:2rem;display:flex;justify-content:space-between;align-items:center;color:var(--gray);font-size:.875rem}
+    .footer-links{display:flex;gap:2rem}
+    .footer-link{color:var(--gray-light);text-decoration:underline;cursor:pointer;transition:color .25s ease;font-size:.9rem}
+    .footer-link:hover{color:#fff}
 
-        /* Responsive */
-        @media (max-width: 1024px) { .services-grid { grid-template-columns: 1fr; gap: 2rem; } }
-        @media (max-width: 768px) {
-            .nav-container { padding: 0 2rem; }
-            .nav-links { display: none; }
-            .hero { padding: 8rem 0 6rem; }
-            .hero-container { padding: 0 2rem; }
-            .hero-title { font-size: 3rem; }
-            .hero-cta { flex-direction: column; gap: 1rem; }
-            .services-container, .contact-container { padding: 0 2rem; }
-            .footer-content { flex-direction: column; gap: 1.5rem; text-align: center; }
-            .footer-bottom { flex-direction: column; gap: 1rem; }
-            .privacy-panel { width: 100%; max-width: none; padding: 2rem; }
-            .privacy-title { font-size: 2rem; }
-        }
-    </style>
+    /* ====== PRIVACY / TERMS SLIDE-IN ====== */
+    .privacy-overlay{position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,.7);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);z-index:1999;opacity:0;visibility:hidden;transition:all .4s ease}
+    .privacy-overlay.open{opacity:1;visibility:visible}
+    .privacy-panel{position:fixed;top:0;right:-100%;width:100%;max-width:600px;height:100vh;background:linear-gradient(135deg,var(--charcoal-deep) 0%, rgba(10,10,10,.98) 50%, var(--black) 100%), radial-gradient(ellipse at 20% 30%, rgba(212,175,55,.05) 0%, transparent 60%);border-left:1px solid rgba(212,175,55,.2);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);z-index:2000;transition:right .4s cubic-bezier(.4,0,.2,1);overflow-y:auto;padding:3rem;box-shadow:-20px 0 40px rgba(0,0,0,.8)}
+    .privacy-panel.open{right:0}
+    .privacy-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:3rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(212,175,55,.2)}
+    .privacy-title{font-family:'EB Garamond',serif;font-size:2.5rem;font-weight:600;color:var(--silver)}
+    .close-btn{background:none;border:2px solid rgba(255,255,255,.25);color:var(--silver);width:40px;height:40px;border-radius:2px;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:all .3s ease}
+    .close-btn:hover{border-color:var(--silver);background:rgba(255,255,255,.1)}
+    .privacy-content{color:var(--gray-light);line-height:1.6}
+    .privacy-content h4{color:var(--silver);font-weight:600;margin:1.5rem 0 .75rem}
+
+    @media (max-width:1024px){.services-grid{grid-template-columns:1fr;gap:2rem}}
+    @media (max-width:768px){
+      .nav-container{padding:0 2rem}
+      .nav-links{display:none}
+      .hero{padding:8rem 0 6rem}
+      .hero-container{padding:0 2rem}
+      .hero-title{font-size:3rem}
+      .hero-cta{flex-direction:column;gap:1rem}
+      .services-container,.contact-container{padding:0 2rem}
+      .footer-content{flex-direction:column;gap:1.5rem;text-align:center}
+      .footer-bottom{flex-direction:column;gap:1rem}
+      .privacy-panel{width:100%;max-width:none;padding:2rem}
+      .privacy-title{font-size:2rem}
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <div class="logo">Strategic Fund Partners</div>
-            <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <a href="#contact" class="cta-nav">Start Conversation</a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">Strategic Guidance<br>For Fund Managers</h1>
-                <p class="hero-subtitle">Navigate complex regulations, optimize fund structures, and scale with confidence. Specialized advisory for emerging managers and established funds.</p>
-                <div class="hero-cta">
-                    <a href="#contact" class="btn-primary">Discuss Your Needs</a>
-                    <a href="#services" class="btn-secondary">Our Approach</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="services-container">
-            <div class="section-header">
-                <h2 class="section-title">Advisory Services</h2>
-                <p class="section-subtitle">Comprehensive fund advisory across all stages of your fund lifecycle</p>
-            </div>
-
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: #d4af37;"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>
-                    </div>
-                    <h3 class="service-title">Fund Formation & Structuring</h3>
-                    <p class="service-desc">End-to-end guidance through fund structuring, documentation, and regulatory filings. From initial strategy to fund close.</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: #d4af37;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>
-                    </div>
-                    <h3 class="service-title">Regulatory Compliance</h3>
-                    <p class="service-desc">Navigate SEC regulations and build sustainable compliance frameworks. Stay ahead of evolving regulatory requirements.</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: #d4af37;"><path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Z"/></svg>
-                    </div>
-                    <h3 class="service-title">RIA & State Adviser Registration</h3>
-                    <p class="service-desc">RIA and state adviser registration guidance, compliance program development, and ongoing compliance program management.</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <!-- Briefcase icon as requested -->
-                        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color:#d4af37;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1"/><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M3 12h18"/><path d="M12 12v2"/></svg>
-                    </div>
-                    <h3 class="service-title">Fund Administration & Operational Support</h3>
-                    <p class="service-desc">Ongoing fund administration, investor relations, service provider coordination, and operational support.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="contact-container">
-            <h2 class="contact-title">Let's Discuss Your Fund's Strategy</h2>
-            <p class="contact-subtitle">Every fund faces unique challenges. We provide tailored strategic guidance to help you navigate complex regulations and scale with confidence.</p>
-            <a href="mailto:contact@strategicfundpartners.com" class="btn-primary">Start Conversation</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-title">Strategic Fund Partners</div>
-                <div class="footer-contact">contact@strategicfundpartners.com</div>
-            </div>
-            <div class="footer-bottom">
-                <div>&copy; 2025 Strategic Fund Partners LLC. All rights reserved.</div>
-                <div class="footer-links">
-                    <span class="footer-link" onclick="openPrivacyPanel('privacy')">Privacy Policy</span>
-                    <span class="footer-link" onclick="openPrivacyPanel('terms')">Terms of Service</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Privacy Policy Slide-in Panel -->
-    <div class="privacy-overlay" onclick="closePrivacyPanel()"></div>
-    <div class="privacy-panel" id="privacyPanel">
-        <div class="privacy-header">
-            <h2 class="privacy-title" id="panelTitle">Privacy Policy</h2>
-            <button class="close-btn" onclick="closePrivacyPanel()">×</button>
-        </div>
-        <div class="privacy-content" id="panelContent"></div>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-container">
+      <div class="logo">Strategic Fund Partners</div>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="cta-nav">Start Conversation</a>
     </div>
+  </nav>
 
-    <script>
-        function openPrivacyPanel(type) {
-            const panel = document.getElementById('privacyPanel');
-            const overlay = document.querySelector('.privacy-overlay');
-            const title = document.getElementById('panelTitle');
-            const content = document.getElementById('panelContent');
-            if (type === 'privacy') {
-                title.textContent = 'Privacy Policy';
-                content.innerHTML = `
-                    <p>Strategic Fund Partners, LLC (a Delaware limited liability company) ("we," "us") respects your privacy. This Policy explains what we collect and how we use it.</p>
-                    <h4>Information We Collect</h4>
-                    <ul>
-                        <li>Information you provide (e.g., name, email, content of inquiries).</li>
-                        <li>Technical data collected automatically (IP address, device info, cookies, analytics).</li>
-                    </ul>
-                    <h4>Legal Bases</h4>
-                    <p>We process personal information for our legitimate interests, to perform a contract with you, with your consent, and to comply with law.</p>
-                    <h4>How We Use Information</h4>
-                    <ul>
-                        <li>Operate, secure, and improve the Site and our services.</li>
-                        <li>Respond to inquiries and communicate with you.</li>
-                        <li>Comply with legal and regulatory obligations.</li>
-                    </ul>
-                    <h4>Cookies & Similar Tech</h4>
-                    <p>We use cookies/web beacons/log files for essential functions, analytics, and user preferences. You can manage cookie settings in your browser.</p>
-                    <h4>Information Sharing</h4>
-                    <p>We do not sell personal information. We may share information as required by law, to protect rights and safety, or in business transitions.</p>
-                    <h4>Data Retention</h4>
-                    <p>We retain information as necessary for business purposes and legal requirements.</p>
-                    <h4>Your Rights</h4>
-                    <p>You may request access, correction, or deletion of your personal information. Contact us at contact@strategicfundpartners.com.</p>
-                    <h4>Security</h4>
-                    <p>We implement reasonable security measures, though no system is completely secure.</p>
-                    <h4>Changes</h4>
-                    <p>We may update this policy. Continued use constitutes acceptance of changes.</p>
-                    <h4>Contact</h4>
-                    <p>Questions? Email us at contact@strategicfundpartners.com</p>
-                `;
-            } else {
-                title.textContent = 'Terms of Service';
-                content.innerHTML = `
-                    <p>These terms constitute a legally binding agreement between you and Strategic Fund Partners, LLC, a Delaware limited liability company.</p>
-                    <h4>Acceptance</h4>
-                    <p>By using this website, you accept these terms. If you disagree, please discontinue use.</p>
-                    <h4>Use Requirements</h4>
-                    <p>You must be 18 years or older and reside in the United States to use this website.</p>
-                    <h4>Intellectual Property</h4>
-                    <p>All website content is owned by Strategic Fund Partners, LLC and protected by intellectual property laws. Personal, non-commercial use only.</p>
-                    <h4>Prohibited Uses</h4>
-                    <ul>
-                        <li>Violating any applicable laws</li>
-                        <li>Systematic content retrieval</li>
-                        <li>Transmitting spam or unsolicited communications</li>
-                        <li>Competing with or harming our business</li>
-                        <li>Interfering with website operation</li>
-                    </ul>
-                    <h4>User Contributions</h4>
-                    <p>Any content you submit becomes non-confidential. You grant us rights to use such content and warrant you have authority to do so.</p>
-                    <h4>Disclaimers</h4>
-                    <p>Website provided "AS IS" without warranties. We disclaim all warranties to the fullest extent permitted by law.</p>
-                    <h4>Limitation of Liability</h4>
-                    <p>We are not liable for damages arising from website use, except for gross negligence or willful misconduct.</p>
-                    <h4>Governing Law</h4>
-                    <p>Delaware law governs these terms. Disputes resolved in Delaware courts.</p>
-                    <h4>Arbitration</h4>
-                    <p>We may require arbitration for disputes under American Arbitration Association rules.</p>
-                    <h4>Time Limitation</h4>
-                    <p>Claims must be commenced within one (1) year of accrual.</p>
-                    <h4>Contact</h4>
-                    <p>Questions? Email us at contact@strategicfundpartners.com</p>
-                `;
-            }
-            panel.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden';
-        }
-        function closePrivacyPanel() { const panel = document.getElementById('privacyPanel'); const overlay = document.querySelector('.privacy-overlay'); panel.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
-        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closePrivacyPanel(); } });
-    </script>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1 class="hero-title">Strategic Guidance<br>For Fund Managers</h1>
+        <p class="hero-subtitle">Navigate complex regulations, optimize fund structures, and scale with confidence. Specialized advisory for emerging managers and established funds.</p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn-primary">Discuss Your Needs</a>
+          <a href="#services" class="btn-secondary">Our Approach</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="services-container">
+      <div class="section-header">
+        <h2 class="section-title">Advisory Services</h2>
+        <p class="section-subtitle">Comprehensive fund advisory across all stages of your fund lifecycle</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color:#d4af37"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>
+          </div>
+          <h3 class="service-title">Fund Formation & Structuring</h3>
+          <p class="service-desc">End-to-end guidance through fund structuring, documentation, and regulatory filings. From initial strategy to fund close.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color:#d4af37"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>
+          </div>
+          <h3 class="service-title">Regulatory Compliance</h3>
+          <p class="service-desc">Navigate SEC regulations and build sustainable compliance frameworks. Stay ahead of evolving regulatory requirements.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color:#d4af37"><path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Z"/></svg>
+          </div>
+          <h3 class="service-title">RIA & State Adviser Registration</h3>
+          <p class="service-desc">RIA and state adviser registration guidance, compliance program development, and ongoing compliance program management.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color:#d4af37"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1"/><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M3 12h18"/><path d="M12 12v2"/></svg>
+          </div>
+          <h3 class="service-title">Fund Administration & Operational Support</h3>
+          <p class="service-desc">Ongoing fund administration, investor relations, service provider coordination, and operational support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-container">
+      <h2 class="contact-title">Let's Discuss Your Fund's Strategy</h2>
+      <p class="contact-subtitle">Every fund faces unique challenges. We provide tailored strategic guidance to help you navigate complex regulations and scale with confidence.</p>
+      <a href="mailto:contact@strategicfundpartners.com" class="btn-primary">Start Conversation</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-title">Strategic Fund Partners</div>
+        <div class="footer-contact">contact@strategicfundpartners.com</div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2025 Strategic Fund Partners LLC. All rights reserved.</div>
+        <div class="footer-links">
+          <span class="footer-link" onclick="openPrivacyPanel('privacy')">Privacy Policy</span>
+          <span class="footer-link" onclick="openPrivacyPanel('terms')">Terms of Service</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PRIVACY / TERMS -->
+  <div class="privacy-overlay" onclick="closePrivacyPanel()"></div>
+  <div class="privacy-panel" id="privacyPanel">
+    <div class="privacy-header">
+      <h2 class="privacy-title" id="panelTitle">Privacy Policy</h2>
+      <button class="close-btn" onclick="closePrivacyPanel()">×</button>
+    </div>
+    <div class="privacy-content" id="panelContent"></div>
+  </div>
+
+  <script>
+    function openPrivacyPanel(type){
+      const panel=document.getElementById('privacyPanel');
+      const overlay=document.querySelector('.privacy-overlay');
+      const title=document.getElementById('panelTitle');
+      const content=document.getElementById('panelContent');
+      if(type==='privacy'){
+        title.textContent='Privacy Policy';
+        content.innerHTML=`<p>Strategic Fund Partners, LLC (a Delaware limited liability company) ("we," "us") respects your privacy. This Policy explains what we collect and how we use it.</p>
+          <h4>Information We Collect</h4>
+          <ul><li>Information you provide (e.g., name, email, content of inquiries).</li><li>Technical data collected automatically (IP address, device info, cookies, analytics).</li></ul>
+          <h4>Legal Bases</h4><p>We process personal information for our legitimate interests, to perform a contract with you, with your consent, and to comply with law.</p>
+          <h4>How We Use Information</h4><ul><li>Operate, secure, and improve the Site and our services.</li><li>Respond to inquiries and communicate with you.</li><li>Comply with legal and regulatory obligations.</li></ul>
+          <h4>Cookies & Similar Tech</h4><p>We use cookies/web beacons/log files for essential functions, analytics, and user preferences. You can manage cookie settings in your browser.</p>
+          <h4>Information Sharing</h4><p>We do not sell personal information. We may share information as required by law, to protect rights and safety, or in business transitions.</p>
+          <h4>Data Retention</h4><p>We retain information as necessary for business purposes and legal requirements.</p>
+          <h4>Your Rights</h4><p>You may request access, correction, or deletion of your personal information. Contact us at contact@strategicfundpartners.com.</p>
+          <h4>Security</h4><p>We implement reasonable security measures, though no system is completely secure.</p>
+          <h4>Changes</h4><p>We may update this policy. Continued use constitutes acceptance of changes.</p>
+          <h4>Contact</h4><p>Questions? Email us at contact@strategicfundpartners.com</p>`;
+      }else{
+        title.textContent='Terms of Service';
+        content.innerHTML=`<p>These terms constitute a legally binding agreement between you and Strategic Fund Partners, LLC, a Delaware limited liability company.</p>
+          <h4>Acceptance</h4><p>By using this website, you accept these terms. If you disagree, please discontinue use.</p>
+          <h4>Use Requirements</h4><p>You must be 18 years or older and reside in the United States to use this website.</p>
+          <h4>Intellectual Property</h4><p>All website content is owned by Strategic Fund Partners, LLC and protected by intellectual property laws. Personal, non-commercial use only.</p>
+          <h4>Prohibited Uses</h4><ul><li>Violating any applicable laws</li><li>Systematic content retrieval</li><li>Transmitting spam or unsolicited communications</li><li>Competing with or harming our business</li><li>Interfering with website operation</li></ul>
+          <h4>User Contributions</h4><p>Any content you submit becomes non-confidential. You grant us rights to use such content and warrant you have authority to do so.</p>
+          <h4>Disclaimers</h4><p>Website provided "AS IS" without warranties. We disclaim all warranties to the fullest extent permitted by law.</p>
+          <h4>Limitation of Liability</h4><p>We are not liable for damages arising from website use, except for gross negligence or willful misconduct.</p>
+          <h4>Governing Law</h4><p>Delaware law governs these terms. Disputes resolved in Delaware courts.</p>
+          <h4>Arbitration</h4><p>We may require arbitration for disputes under American Arbitration Association rules.</p>
+          <h4>Time Limitation</h4><p>Claims must be commenced within one (1) year of accrual.</p>
+          <h4>Contact</h4><p>Questions? Email us at contact@strategicfundpartners.com</p>`;
+      }
+      panel.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden';
+    }
+    function closePrivacyPanel(){
+      const panel=document.getElementById('privacyPanel');
+      const overlay=document.querySelector('.privacy-overlay');
+      panel.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow='';
+    }
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') closePrivacyPanel(); });
+  </script>
 </body>
 </html>
