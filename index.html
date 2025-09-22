@@ -160,7 +160,7 @@
     }
     
     .nav-container{
-      max-width:1400px;
+      max-width:1600px;
       margin:0 auto;
       padding:0 4rem;
       display:flex;
@@ -295,7 +295,7 @@
     }
     
     .hero-container{
-      max-width:1400px;
+      max-width:1600px;
       margin:0 auto;
       padding:0 4rem;
       position:relative;
@@ -304,7 +304,7 @@
     }
     
     .hero-content{
-      max-width:900px;
+      max-width:1000px;
       margin:0 auto;
       text-align:center;
     }
@@ -314,10 +314,7 @@
       font-weight:600;
       line-height:1.2;
       margin-bottom:2rem;
-      background:var(--silver-gradient);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
+      color:var(--white);
       letter-spacing:-0.025em;
       padding-bottom:0.25rem;
       overflow:visible;
@@ -328,7 +325,7 @@
       color:var(--gray-light);
       line-height:1.7;
       margin-bottom:3rem;
-      max-width:650px;
+      max-width:750px;
       margin-left:auto;
       margin-right:auto;
       font-family:'EB Garamond',serif;
@@ -402,7 +399,7 @@
     }
     
     .services-container{
-      max-width:1400px;
+      max-width:1600px;
       margin:0 auto;
       padding:0 4rem;
       position:relative;
@@ -436,9 +433,11 @@
     .services-grid{
       display:grid;
       grid-template-columns:repeat(2,1fr);
-      gap:3rem;
-      padding:1rem;
+      gap:3.5rem;
+      padding:2rem;
       transform-style:preserve-3d;
+      max-width:1400px;
+      margin:0 auto;
     }
     
     .service-card{
@@ -561,7 +560,7 @@
     }
     
     .contact-container{
-      max-width:900px;
+      max-width:1000px;
       margin:0 auto;
       padding:0 4rem;
       text-align:center;
@@ -781,7 +780,7 @@
     }
     
     .footer-container{
-      max-width:1400px;
+      max-width:1600px;
       margin:0 auto;
       padding:0 4rem;
     }
@@ -1569,6 +1568,100 @@
         if (form && cta) {
           form.style.display = 'none';
           cta.style.display = 'block';
+        }
+      };
+      
+      // Handle form submission without redirect
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          
+          const submitBtn = contactForm.querySelector('.form-submit');
+          const originalText = submitBtn.textContent;
+          
+          // Show loading state
+          submitBtn.textContent = 'Sending...';
+          submitBtn.disabled = true;
+          
+          try {
+            const formData = new FormData(contactForm);
+            const response = await fetch(contactForm.action, {
+              method: 'POST',
+              body: formData,
+              headers: {
+                'Accept': 'application/json'
+              }
+            });
+            
+            if (response.ok) {
+              // Show success message
+              contactForm.innerHTML = `
+                <div style="text-align:center;padding:3rem 2rem;">
+                  <h3 style="color:var(--gold);font-size:1.5rem;margin-bottom:1rem;font-family:'EB Garamond',serif;">Thank You!</h3>
+                  <p style="color:var(--gray-light);margin-bottom:2rem;line-height:1.6;">Your message has been sent successfully. We'll get back to you within 24 hours.</p>
+                  <button onclick="resetContactForm()" class="btn btn-secondary">Send Another Message</button>
+                </div>
+              `;
+            } else {
+              throw new Error('Form submission failed');
+            }
+          } catch (error) {
+            // Show error message
+            submitBtn.textContent = 'Error - Try Again';
+            submitBtn.disabled = false;
+            setTimeout(() => {
+              submitBtn.textContent = originalText;
+            }, 3000);
+          }
+        });
+      }
+      
+      // Reset form function
+      window.resetContactForm = function() {
+        const form = document.getElementById('contactForm');
+        if (form) {
+          form.innerHTML = `
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" id="name" name="name" class="form-input" placeholder="Your full name" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="company" class="form-label">Company</label>
+                <input type="text" id="company" name="company" class="form-input" placeholder="Your company name" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="your.email@company.com" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="message" class="form-label">How can we help? <span class="form-optional">(optional)</span></label>
+              <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your fund advisory needs..."></textarea>
+            </div>
+            
+            <div class="form-submit-row">
+              <button type="submit" class="form-submit">Send Message</button>
+            </div>
+            
+            <div class="contact-divider">
+              <span class="contact-divider-text">or</span>
+            </div>
+            
+            <div class="form-email-row">
+              <a href="mailto:contact@strategicfundpartners.com" class="btn btn-secondary btn-full">Email Directly</a>
+            </div>
+            
+            <div class="form-cancel-row">
+              <button type="button" class="btn-cancel-link" onclick="hideContactForm()">Cancel</button>
+            </div>
+            
+            <p class="contact-note">Confidential consultation</p>
+          `;
         }
       };
       
