@@ -27,7 +27,7 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23000'/><text x='50' y='50' font-family='serif' font-size='50' font-weight='700' text-anchor='middle' dominant-baseline='middle' fill='%23d4af37'>SF</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024' preserveAspectRatio='xMidYMid meet'><g transform='translate(0,1024) scale(0.1,-0.1)' fill='%23d4af37' stroke='none'><path d='M8152 8869 c-4 -32 -85 -318 -124 -434 -138 -413 -383 -904 -626-1255 -357 -516 -752 -925 -1282 -1327 -247 -186 -497 -355 -1010 -678 -677-427 -1023 -666 -1380 -951 -656 -524 -1161 -1086 -1490 -1659 -142 -246 -284-575 -343 -792 l-26 -93 877 0 877 1 54 89 c132 216 358 487 612 735 252 246 490 435 979 780 617 436 861 635 1236 1009 340 340 521 560 769 935 433 655 691 1307 815 2061 54 332 62 450 67 1010 4 432 2 643 -5 569z'/><path d='M8085 5765 c-51 -132 -225 -479 -316 -630 -400 -672 -902 -1240-1564 -1769 -180 -144 -242 -191 -580 -436 -340 -247 -448 -329 -630 -481-267 -222 -487 -437 -693 -678 l-74 -86 1948 -3 c1071 -1 1949 -1 1951 1 2 2 2 944 1 2093 l-3 2090 -40 -101z'/></g></svg>">
   
   <style>
     /* Reset */
@@ -52,9 +52,7 @@
       --silver-gradient:linear-gradient(135deg,#ffffff 0%,#d4d4d8 25%,#a3a3a3 50%,#e4e4e7 75%,#ffffff 100%);
     }
     
-    html{
-      scroll-behavior:smooth;
-    }
+    html{scroll-behavior:smooth}
     
     body{
       font-family:'Inter',system-ui,-apple-system,sans-serif;
@@ -68,7 +66,7 @@
       position:relative;
     }
     
-    /* Enhanced Background with Rich Texture, Noise, and Depth */
+    /* Enhanced Background */
     body::before{
       content:"";
       position:fixed;
@@ -79,91 +77,30 @@
         radial-gradient(ellipse at 30% 40%,rgba(212,175,55,0.15) 0%,transparent 70%),
         radial-gradient(ellipse at 70% 80%,rgba(212,175,55,0.12) 0%,transparent 60%),
         radial-gradient(ellipse at 10% 90%,rgba(255,255,255,0.06) 0%,transparent 50%),
-        radial-gradient(ellipse at 90% 10%,rgba(212,175,55,0.08) 0%,transparent 40%),
-        radial-gradient(circle at 50% 20%,rgba(64,64,64,0.4) 0%,transparent 60%);
+        radial-gradient(ellipse at 90% 10%,rgba(212,175,55,0.08) 0%,transparent 40%);
     }
     
-    /* Multiple texture layers for rich depth */
     body::after{
       content:"";
       position:fixed;
       inset:0;
       z-index:-2;
       background:
-        /* Fine grain texture */
-        repeating-linear-gradient(
-          120deg,
-          rgba(255,255,255,0.035) 0 1px,
-          transparent 1px 45px
-        ),
-        repeating-linear-gradient(
-          60deg,
-          rgba(212,175,55,0.055) 0 1px,
-          transparent 1px 70px
-        ),
-        repeating-linear-gradient(
-          45deg,
-          rgba(255,255,255,0.02) 0 1px,
-          transparent 1px 110px
-        ),
-        repeating-linear-gradient(
-          30deg,
-          rgba(212,175,55,0.03) 0 1px,
-          transparent 1px 160px
-        ),
-        /* Noise pattern */
-        repeating-linear-gradient(
-          0deg,
-          rgba(255,255,255,0.008) 0 1px,
-          transparent 1px 3px
-        ),
-        repeating-linear-gradient(
-          90deg,
-          rgba(212,175,55,0.012) 0 1px,
-          transparent 1px 4px
-        );
+        repeating-linear-gradient(120deg,rgba(255,255,255,0.035) 0 1px,transparent 1px 45px),
+        repeating-linear-gradient(60deg,rgba(212,175,55,0.055) 0 1px,transparent 1px 70px),
+        repeating-linear-gradient(45deg,rgba(255,255,255,0.02) 0 1px,transparent 1px 110px);
       mix-blend-mode:overlay;
       opacity:1;
       animation:textureShift 40s ease-in-out infinite;
     }
     
-    /* Additional animated noise and glow layer */
-    .floating-orb::after{
-      content:"";
-      position:fixed;
-      inset:0;
-      background:
-        /* Moving light sources */
-        radial-gradient(circle at 25% 25%,rgba(212,175,55,0.04) 0%,transparent 30%),
-        radial-gradient(circle at 75% 75%,rgba(255,255,255,0.025) 0%,transparent 25%),
-        radial-gradient(circle at 50% 10%,rgba(212,175,55,0.035) 0%,transparent 40%),
-        radial-gradient(circle at 20% 80%,rgba(255,255,255,0.02) 0%,transparent 35%),
-        /* Subtle grain overlay */
-        repeating-conic-gradient(from 0deg at 50% 50%, 
-          rgba(212,175,55,0.015) 0deg, 
-          transparent 2deg, 
-          rgba(255,255,255,0.008) 4deg, 
-          transparent 6deg
-        );
-      animation:orbPulse 25s ease-in-out infinite;
-      pointer-events:none;
-      z-index:-1;
-    }
-    
     @keyframes textureShift{
-      0%,100%{transform:translateX(0) translateY(0) scale(1) rotate(0deg)}
-      25%{transform:translateX(6px) translateY(-3px) scale(1.008) rotate(0.1deg)}
-      50%{transform:translateX(-3px) translateY(6px) scale(0.992) rotate(-0.05deg)}
-      75%{transform:translateX(3px) translateY(-4px) scale(1.004) rotate(0.08deg)}
+      0%,100%{transform:translateX(0) translateY(0)}
+      25%{transform:translateX(6px) translateY(-3px)}
+      50%{transform:translateX(-3px) translateY(6px)}
+      75%{transform:translateX(3px) translateY(-4px)}
     }
     
-    @keyframes orbPulse{
-      0%,100%{opacity:0.4;transform:scale(1) rotate(0deg)}
-      33%{opacity:0.7;transform:scale(1.03) rotate(60deg)}
-      66%{opacity:0.5;transform:scale(0.98) rotate(120deg)}
-    }
-    
-    /* Floating orb animation */
     @keyframes floatOrb{
       0%,100%{transform:translate(0,0) scale(1)}
       33%{transform:translate(30px,-30px) scale(1.1)}
@@ -188,7 +125,6 @@
       font-weight:600;
     }
     
-    /* Skip Link */
     .skip-link{
       position:absolute;
       top:-40px;
@@ -201,11 +137,9 @@
       z-index:10000;
     }
     
-    .skip-link:focus{
-      top:0;
-    }
+    .skip-link:focus{top:0}
     
-    /* Navigation - Thinner bars */
+    /* Navigation */
     .nav{
       position:fixed;
       top:0;
@@ -257,9 +191,7 @@
       letter-spacing:-0.02em;
     }
     
-    .logo-link:hover .logo-icon{
-      transform:scale(1.05);
-    }
+    .logo-link:hover .logo-icon{transform:scale(1.05)}
     
     .nav-links{
       display:flex;
@@ -290,14 +222,10 @@
     }
     
     .nav-links a:hover,
-    .nav-links a.active{
-      color:var(--white);
-    }
+    .nav-links a.active{color:var(--white)}
     
     .nav-links a:hover::after,
-    .nav-links a.active::after{
-      width:100%;
-    }
+    .nav-links a.active::after{width:100%}
     
     .menu-toggle{
       display:none;
@@ -317,17 +245,9 @@
       transition:all 0.3s ease;
     }
     
-    .menu-toggle.active span:nth-child(1){
-      transform:rotate(45deg) translate(5px,5px);
-    }
-    
-    .menu-toggle.active span:nth-child(2){
-      opacity:0;
-    }
-    
-    .menu-toggle.active span:nth-child(3){
-      transform:rotate(-45deg) translate(7px,-6px);
-    }
+    .menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+    .menu-toggle.active span:nth-child(2){opacity:0}
+    .menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-6px)}
     
     .cta-nav{
       background:var(--gold-gradient);
@@ -358,9 +278,7 @@
       box-shadow:0 8px 25px rgba(212,175,55,0.3);
     }
     
-    .cta-nav:hover::before{
-      left:100%;
-    }
+    .cta-nav:hover::before{left:100%}
     
     /* Hero Section */
     .hero{
@@ -371,16 +289,9 @@
       position:relative;
     }
     
-    /* Hero fade-in animation */
     @keyframes fadeInUp{
-      from{
-        opacity:0;
-        transform:translateY(30px);
-      }
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
+      from{opacity:0;transform:translateY(30px)}
+      to{opacity:1;transform:translateY(0)}
     }
     
     .hero-container{
@@ -401,15 +312,15 @@
     .hero-title{
       font-size:clamp(2.5rem,5vw,4rem);
       font-weight:600;
-      line-height:1.2; /* Increased from 1.15 to prevent cutoff */
+      line-height:1.2;
       margin-bottom:2rem;
       background:var(--silver-gradient);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       background-clip:text;
       letter-spacing:-0.025em;
-      padding-bottom:0.25rem; /* Add padding to prevent cutoff */
-      overflow:visible; /* Ensure text isn't clipped */
+      padding-bottom:0.25rem;
+      overflow:visible;
     }
     
     .hero-subtitle{
@@ -469,9 +380,7 @@
       box-shadow:0 15px 35px rgba(212,175,55,0.4);
     }
     
-    .btn-primary:hover::before{
-      left:100%;
-    }
+    .btn-primary:hover::before{left:100%}
     
     .btn-secondary{
       color:var(--white);
@@ -529,11 +438,9 @@
       grid-template-columns:repeat(2,1fr);
       gap:3rem;
       padding:1rem;
-      /* Remove any transform constraints */
       transform-style:preserve-3d;
     }
     
-    /* Completely reset and rebuild service cards */
     .service-card{
       display:block;
       padding:3rem 2rem;
@@ -544,12 +451,10 @@
         radial-gradient(circle at top right,rgba(212,175,55,0.02) 0%,transparent 50%);
       border:1px solid rgba(255,255,255,0.1);
       cursor:pointer;
-      /* Very basic transition */
       transition:transform 0.4s ease-out;
       transform:scale(1);
       transform-origin:center center;
       box-shadow:0 8px 32px rgba(0,0,0,0.6);
-      /* Force new stacking context */
       isolation:isolate;
       will-change:transform;
     }
@@ -567,18 +472,14 @@
       transition:transform 0.4s ease;
     }
     
-    /* Force the scale with maximum specificity */
     .services .services-grid .service-card:hover{
       transform:scale(1.035) !important;
       box-shadow:0 20px 40px rgba(0,0,0,0.8) !important;
       z-index:999 !important;
     }
     
-    .service-card:hover::before{
-      transform:scaleX(1);
-    }
+    .service-card:hover::before{transform:scaleX(1)}
     
-    /* Icon with subtle glow - no excessive scaling */
     .service-icon{
       width:3.5rem;
       height:3.5rem;
@@ -599,7 +500,6 @@
         inset 0 1px 0 rgba(212,175,55,0.1);
     }
     
-    /* Subtle icon glow on card hover - matches reference */
     .service-card:hover .service-icon{
       border-color:rgba(212,175,55,0.6);
       background:
@@ -627,6 +527,31 @@
       font-family:'EB Garamond',serif;
       font-weight:400;
       letter-spacing:0.02em;
+      margin-bottom:1.5rem;
+    }
+    
+    .service-features{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+    
+    .service-features li{
+      color:var(--gray-light);
+      font-size:0.9375rem;
+      margin-bottom:0.75rem;
+      position:relative;
+      padding-left:1.25rem;
+      line-height:1.5;
+    }
+    
+    .service-features li::before{
+      content:'✓';
+      position:absolute;
+      left:0;
+      color:var(--gold);
+      font-weight:600;
+      font-size:0.875rem;
     }
     
     /* Contact Section */
@@ -653,17 +578,200 @@
     .contact-subtitle{
       font-size:1.25rem;
       color:var(--gray-light);
-      margin-bottom:2.5rem;
+      margin-bottom:3rem;
       line-height:1.7;
       font-family:'EB Garamond',serif;
       font-weight:400;
-      letter-spacing:0.02em;
+      letter-spacing:0.01em;
       max-width:600px;
       margin-left:auto;
       margin-right:auto;
     }
     
-    /* Footer - Thinner */
+    .contact-form{
+      max-width:700px;
+      margin:2rem auto;
+      text-align:left;
+      background:rgba(23,23,23,0.6);
+      padding:2.5rem;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.1);
+      animation:fadeInUp 0.4s ease-out;
+    }
+    
+    .form-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:1.5rem;
+      margin-bottom:1.5rem;
+    }
+    
+    .form-group{margin-bottom:1.5rem}
+    
+    .form-optional{
+      color:var(--gray);
+      font-weight:400;
+      font-size:0.875rem;
+    }
+    
+    .form-label{
+      display:block;
+      margin-bottom:0.75rem;
+      color:var(--silver-light);
+      font-weight:500;
+      font-size:0.9375rem;
+    }
+    
+    .form-input,
+    .form-textarea{
+      width:100%;
+      padding:1rem;
+      border:2px solid rgba(255,255,255,0.15);
+      border-radius:6px;
+      background:rgba(0,0,0,0.4);
+      color:var(--white);
+      font-size:1rem;
+      font-family:'Inter',sans-serif;
+      transition:all 0.3s ease;
+      resize:vertical;
+    }
+    
+    .form-input:focus,
+    .form-textarea:focus{
+      outline:none;
+      border-color:var(--gold);
+      background:rgba(0,0,0,0.6);
+      box-shadow:0 0 0 3px rgba(212,175,55,0.15);
+    }
+    
+    .form-input::placeholder,
+    .form-textarea::placeholder{color:var(--gray)}
+    
+    .form-textarea{
+      min-height:100px;
+      max-height:200px;
+    }
+    
+    .form-submit{
+      background:var(--gold-gradient);
+      color:var(--black);
+      padding:1rem 2rem;
+      border:none;
+      border-radius:6px;
+      font-weight:600;
+      font-size:0.9375rem;
+      cursor:pointer;
+      transition:all 0.3s ease;
+      position:relative;
+      overflow:hidden;
+      width:100%;
+    }
+    
+    .form-submit-row{
+      margin-bottom:1.5rem;
+    }
+    
+    .form-email-row{
+      margin-bottom:2rem;
+    }
+    
+    .btn-full{
+      width:100%;
+      text-align:center;
+    }
+    
+    .form-cancel-row{
+      display:flex;
+      justify-content:center;
+      margin-bottom:1rem;
+    }
+    
+    .btn-cancel-link{
+      background:none;
+      border:none;
+      color:var(--gray-light);
+      cursor:pointer;
+      font-size:0.875rem;
+      text-decoration:underline;
+      padding:0.5rem 1rem;
+      transition:color 0.3s ease;
+    }
+    
+    .btn-cancel-link:hover{
+      color:var(--white);
+    }
+    
+    .form-submit::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:-100%;
+      width:100%;
+      height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);
+      transition:left 0.5s ease;
+    }
+    
+    .form-submit:hover{
+      transform:translateY(-2px);
+      box-shadow:0 8px 25px rgba(212,175,55,0.3);
+    }
+    
+    .form-submit:hover::before{left:100%}
+    
+    .form-submit:disabled{
+      opacity:0.6;
+      cursor:not-allowed;
+      transform:none;
+      box-shadow:none;
+    }
+    
+    .contact-note{
+      margin-top:1.5rem;
+      font-size:0.875rem;
+      color:var(--gray);
+      font-style:italic;
+      text-align:center;
+    }
+    
+    /* Better divider styling */
+    .contact-divider{
+      margin:1.5rem 0;
+      text-align:center;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    
+    .contact-divider::before,
+    .contact-divider::after{
+      content:"";
+      flex:1;
+      height:1px;
+      background:linear-gradient(to right,transparent,rgba(255,255,255,0.2),transparent);
+    }
+    
+    .contact-divider::before{
+      background:linear-gradient(to right,transparent,rgba(255,255,255,0.2));
+      margin-right:1rem;
+    }
+    
+    .contact-divider::after{
+      background:linear-gradient(to left,transparent,rgba(255,255,255,0.2));
+      margin-left:1rem;
+    }
+    
+    .contact-divider-text{
+      padding:0 1.5rem;
+      color:var(--gray);
+      font-size:0.875rem;
+      font-weight:500;
+      text-transform:uppercase;
+      letter-spacing:0.1em;
+    }
+    
+    /* Footer */
     .footer{
       background:linear-gradient(to bottom,transparent,rgba(10,10,10,0.8));
       color:var(--gray-light);
@@ -701,9 +809,7 @@
       display:block;
     }
     
-    .footer-logo:hover{
-      opacity:1;
-    }
+    .footer-logo:hover{opacity:1}
     
     .footer-title{
       font-family:'EB Garamond',serif;
@@ -728,10 +834,7 @@
       font-size:0.875rem;
     }
     
-    .footer-links{
-      display:flex;
-      gap:2rem;
-    }
+    .footer-links{display:flex;gap:2rem}
     
     .footer-link{
       color:var(--gray-light);
@@ -741,9 +844,7 @@
       position:relative;
     }
     
-    .footer-link:hover{
-      color:var(--white);
-    }
+    .footer-link:hover{color:var(--white)}
     
     .footer-link::after{
       content:'';
@@ -756,9 +857,7 @@
       transition:width 0.3s ease;
     }
     
-    .footer-link:hover::after{
-      width:100%;
-    }
+    .footer-link:hover::after{width:100%}
     
     /* Privacy Panel */
     .privacy-overlay{
@@ -792,9 +891,7 @@
       padding:3rem;
     }
     
-    .privacy-panel.open{
-      right:0;
-    }
+    .privacy-panel.open{right:0}
     
     .privacy-header{
       display:flex;
@@ -848,21 +945,12 @@
       font-family:'EB Garamond',serif;
       letter-spacing:-0.01em;
       position:relative;
+      padding-bottom:0.75rem;
+      border-bottom:1px solid rgba(212,175,55,0.3);
     }
     
     .privacy-content h4:first-of-type{
       margin-top:1.5rem;
-    }
-    
-    .privacy-content h4::after{
-      content:'';
-      position:absolute;
-      bottom:-4px;
-      left:0;
-      width:30px;
-      height:2px;
-      background:var(--gold);
-      border-radius:1px;
     }
     
     .privacy-content p{
@@ -884,16 +972,13 @@
       line-height:1.7;
     }
     
-    .privacy-content li::marker{
-      color:var(--gold);
-    }
+    .privacy-content li::marker{color:var(--gold)}
     
     .privacy-content strong{
       color:var(--silver-light);
       font-weight:600;
     }
     
-    /* Scroll to Top */
     .scroll-top{
       position:fixed;
       bottom:2rem;
@@ -925,11 +1010,9 @@
       box-shadow:0 8px 20px rgba(212,175,55,0.4);
     }
     
-    /* Responsive */
+    /* Mobile Responsiveness */
     @media (max-width:768px){
-      .nav-container{
-        padding:0 1.5rem;
-      }
+      .nav-container{padding:0 1.5rem}
       
       .nav-links{
         position:fixed;
@@ -942,19 +1025,17 @@
         justify-content:center;
         padding:2rem;
         transition:right 0.3s ease;
+        z-index:9999;
       }
       
-      .nav-links.active{
-        right:0;
-      }
+      .nav-links.active{right:0}
       
       .menu-toggle{
         display:block;
+        z-index:10000;
       }
       
-      .cta-nav{
-        display:none;
-      }
+      .cta-nav{display:none}
       
       .hero{
         padding:6rem 0 4rem;
@@ -964,50 +1045,177 @@
       .hero-container,
       .services-container,
       .contact-container,
-      .footer-container{
-        padding:0 1.5rem;
-      }
+      .footer-container{padding:0 1.5rem}
       
       .hero-title{
         font-size:2.25rem;
+        line-height:1.25;
+        margin-bottom:1.5rem;
+        padding-bottom:0.5rem;
+      }
+      
+      .hero-subtitle{
+        font-size:1rem;
+        margin-bottom:2.5rem;
       }
       
       .hero-cta{
         flex-direction:column;
         width:100%;
+        gap:1rem;
       }
       
       .btn{
         width:100%;
         text-align:center;
+        padding:1rem 2rem;
       }
       
-      .services{
-        padding:4rem 0;
-      }
+      .services{padding:4rem 0}
       
       .services-grid{
         grid-template-columns:1fr;
         gap:1.5rem;
+        padding:0.5rem;
       }
       
-      .contact{
-        padding:4rem 0;
+      .service-card{
+        padding:2rem 1.5rem;
+        transition:transform 1s ease;
       }
+      
+      .service-card:hover{
+        transform:scale(1.02) !important;
+        transition:transform 0.3s ease;
+      }
+      
+      .service-icon{
+        width:3rem;
+        height:3rem;
+        margin-bottom:1.5rem;
+      }
+      
+      .service-title{
+        font-size:1.375rem;
+        margin-bottom:0.75rem;
+      }
+      
+      .service-desc{
+        font-size:0.9375rem;
+        line-height:1.6;
+      }
+      
+      .section-title{
+        font-size:2rem;
+        margin-bottom:0.75rem;
+      }
+      
+      .section-subtitle{
+        font-size:1.125rem;
+        margin-bottom:3rem;
+      }
+      
+      .contact{padding:4rem 0}
+      
+      .contact-title{
+        font-size:2rem;
+        margin-bottom:0.75rem;
+      }
+      
+      .contact-subtitle{
+        font-size:1.125rem;
+        margin-bottom:2rem;
+      }
+      
+      .contact-form{
+        margin:1.5rem auto;
+        padding:2rem;
+        max-width:100%;
+      }
+      
+      .form-row{
+        grid-template-columns:1fr;
+        gap:1rem;
+        margin-bottom:1rem;
+      }
+      
+      .form-submit-row{
+        margin-bottom:1rem;
+      }
+      
+      .form-email-row{
+        margin-bottom:1.5rem;
+      }
+      
+      .form-cancel-row{
+        margin-top:0.5rem;
+      }
+      
+      .form-input,
+      .form-textarea{
+        padding:0.875rem;
+        font-size:16px;
+      }
+      
+      .form-submit{padding:1rem 2rem}
+      
+      .contact-divider{margin:2rem 0}
       
       .footer-content,
       .footer-bottom{
         flex-direction:column;
         text-align:center;
+        gap:1.5rem;
       }
+      
+      .footer-brand{
+        flex-direction:column;
+        gap:0.75rem;
+      }
+      
+      .footer-title{font-size:1.25rem}
       
       .privacy-panel{
         max-width:100%;
-        padding:2rem;
+        padding:1.5rem;
+      }
+      
+      .privacy-title{font-size:1.75rem}
+      
+      .scroll-top{
+        bottom:1.5rem;
+        right:1.5rem;
+        width:44px;
+        height:44px;
       }
     }
     
-    /* Accessibility */
+    @media (max-width:480px){
+      .hero-title{
+        font-size:2rem;
+        line-height:1.3;
+      }
+      
+      .hero-container,
+      .services-container,
+      .contact-container,
+      .footer-container{padding:0 1rem}
+      
+      .contact-form{
+        padding:1.5rem;
+        margin:1rem auto;
+      }
+      
+      .service-card{padding:1.5rem 1rem}
+      
+      .service-icon{
+        width:2.5rem;
+        height:2.5rem;
+      }
+      
+      .services-grid{gap:1rem}
+    }
+    
     :focus-visible{
       outline:2px solid var(--gold);
       outline-offset:2px;
@@ -1020,14 +1228,12 @@
       }
     }
     
-    /* Print Styles */
     @media print{
       body{color:black;background:white}
       .nav,.hero-cta,.footer-links,.scroll-top{display:none}
       .hero-title,.section-title,.contact-title{color:black;-webkit-text-fill-color:black}
     }
     
-    /* High Contrast */
     @media (prefers-contrast:high){
       :root{--gold:#ffcc00;--gray-light:#e0e0e0}
       .service-card,.btn{border:2px solid currentColor}
@@ -1035,13 +1241,10 @@
   </style>
 </head>
 <body>
-  <!-- Floating Orb Background Element -->
   <div class="floating-orb"></div>
   
-  <!-- Skip Link -->
   <a href="#main" class="skip-link">Skip to main content</a>
   
-  <!-- Navigation -->
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-container">
       <a href="#" class="logo-link">
@@ -1077,9 +1280,7 @@
     </div>
   </nav>
 
-  <!-- Main Content -->
   <main id="main">
-    <!-- Hero Section -->
     <section class="hero">
       <div class="hero-container">
         <div class="hero-content">
@@ -1093,7 +1294,6 @@
       </div>
     </section>
 
-    <!-- Services Section -->
     <section class="services" id="services">
       <div class="services-container">
         <div class="section-header">
@@ -1109,7 +1309,12 @@
               </svg>
             </div>
             <h3 class="service-title">Fund Formation & Structuring</h3>
-            <p class="service-desc">End-to-end guidance through fund structuring, documentation, and regulatory filings. From initial strategy to fund close.</p>
+            <p class="service-desc">Complete guidance through fund structuring, documentation, and regulatory filings from strategy to close.</p>
+            <ul class="service-features">
+              <li>Entity formation & optimization</li>
+              <li>Fund & governance documentation</li>
+              <li>Custom structuring support</li>
+            </ul>
           </article>
           
           <article class="service-card">
@@ -1119,7 +1324,12 @@
               </svg>
             </div>
             <h3 class="service-title">Regulatory Compliance</h3>
-            <p class="service-desc">Navigate regulations and build sustainable compliance frameworks. Stay ahead of evolving regulatory requirements.</p>
+            <p class="service-desc">Navigate SEC regulations and build sustainable compliance frameworks for evolving requirements.</p>
+            <ul class="service-features">
+              <li>Compliance manual development</li>
+              <li>Ongoing regulatory monitoring</li>
+              <li>Policy & procedure implementation</li>
+            </ul>
           </article>
           
           <article class="service-card">
@@ -1129,7 +1339,12 @@
               </svg>
             </div>
             <h3 class="service-title">RIA & State Adviser Registration</h3>
-            <p class="service-desc">RIA and state adviser registration guidance, compliance program development, and ongoing compliance program management.</p>
+            <p class="service-desc">Complete RIA and state adviser registration with ongoing compliance management.</p>
+            <ul class="service-features">
+              <li>Form ADV preparation & filing</li>
+              <li>State registration coordination</li>
+              <li>Annual update management</li>
+            </ul>
           </article>
           
           <article class="service-card">
@@ -1139,23 +1354,72 @@
               </svg>
             </div>
             <h3 class="service-title">Fund Administration & Operational Support</h3>
-            <p class="service-desc">Ongoing fund administration, investor relations, service provider coordination, and operational support.</p>
+            <p class="service-desc">Comprehensive fund administration, investor relations, and operational support.</p>
+            <ul class="service-features">
+              <li>Service provider coordination</li>
+              <li>Operational infrastructure</li>
+              <li>Fund governance oversight</li>
+            </ul>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="contact" id="contact">
       <div class="contact-container">
-        <h2 class="contact-title">Let's Discuss Your Fund's Strategy</h2>
+        <h2 class="contact-title">Let's Talk</h2>
         <p class="contact-subtitle">Every fund faces unique challenges. We provide tailored strategic guidance to help you navigate complex regulations and scale with confidence.</p>
-        <a href="mailto:contact@strategicfundpartners.com" class="btn btn-primary">Start Conversation</a>
+        
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xdkwneor" method="POST" style="display:none;">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" id="name" name="name" class="form-input" placeholder="Your full name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="company" class="form-label">Company</label>
+              <input type="text" id="company" name="company" class="form-input" placeholder="Your company name" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="your.email@company.com" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="message" class="form-label">How can we help? <span class="form-optional">(optional)</span></label>
+            <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your fund advisory needs..."></textarea>
+          </div>
+          
+          <div class="form-submit-row">
+            <button type="submit" class="form-submit">Send Message</button>
+          </div>
+          
+          <div class="contact-divider">
+            <span class="contact-divider-text">or</span>
+          </div>
+          
+          <div class="form-email-row">
+            <a href="mailto:contact@strategicfundpartners.com" class="btn btn-secondary btn-full">Email Directly</a>
+          </div>
+          
+          <div class="form-cancel-row">
+            <button type="button" class="btn-cancel-link" onclick="hideContactForm()">Cancel</button>
+          </div>
+          
+          <p class="contact-note">Confidential consultation</p>
+        </form>
+        
+        <div class="contact-cta-group" id="initialCTA">
+          <button class="btn btn-primary" onclick="showContactForm()">Get Started</button>
+          <p class="contact-note">Confidential consultation</p>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-content">
@@ -1176,12 +1440,9 @@
           </svg>
           <div class="footer-title">Strategic Fund Partners</div>
         </div>
-        <address class="footer-contact">
-          <a href="mailto:contact@strategicfundpartners.com" style="color:inherit;text-decoration:none">contact@strategicfundpartners.com</a>
-        </address>
       </div>
       <div class="footer-bottom">
-        <div>&copy; 2025 Strategic Fund Partners LLC. All rights reserved.</div>
+        <div>&copy; 2025 Strat Fund Partners LLC. All rights reserved.</div>
         <nav class="footer-links">
           <a href="#privacy" class="footer-link" onclick="openPrivacyPanel('privacy');return false;">Privacy Policy</a>
           <a href="#terms" class="footer-link" onclick="openPrivacyPanel('terms');return false;">Terms of Service</a>
@@ -1190,14 +1451,12 @@
     </div>
   </footer>
 
-  <!-- Scroll to Top -->
   <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
     <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
     </svg>
   </button>
 
-  <!-- Privacy Panel -->
   <div class="privacy-overlay" id="privacyOverlay" onclick="closePrivacyPanel()"></div>
   <div class="privacy-panel" id="privacyPanel">
     <div class="privacy-header">
@@ -1220,11 +1479,9 @@
         privacyOverlay: document.getElementById('privacyOverlay'),
         panelTitle: document.getElementById('panelTitle'),
         panelContent: document.getElementById('panelContent'),
-        navLinks: document.querySelectorAll('.nav-links a'),
         body: document.body
       };
       
-      // Throttle function for performance
       function throttle(func, wait) {
         let timeout;
         return function executedFunction(...args) {
@@ -1237,8 +1494,6 @@
         };
       }
       
-      // Scroll handling
-      let lastScroll = 0;
       const handleScroll = throttle(() => {
         const currentScroll = window.pageYOffset;
         
@@ -1253,13 +1508,10 @@
         } else {
           dom.scrollTop?.classList.remove('visible');
         }
-        
-        lastScroll = currentScroll;
       }, 100);
       
       window.addEventListener('scroll', handleScroll, { passive: true });
       
-      // Mobile menu
       dom.menuToggle?.addEventListener('click', () => {
         const isActive = dom.navMenu?.classList.contains('active');
         dom.menuToggle.classList.toggle('active');
@@ -1267,7 +1519,6 @@
         dom.body.style.overflow = isActive ? '' : 'hidden';
       });
       
-      // Smooth scrolling
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
           const href = this.getAttribute('href');
@@ -1291,12 +1542,37 @@
         });
       });
       
-      // Scroll to top
       dom.scrollTop?.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
       
-      // Privacy panel
+      // Contact form functions - now properly defined in global scope
+      window.showContactForm = function() {
+        const form = document.getElementById('contactForm');
+        const cta = document.getElementById('initialCTA');
+        if (form && cta) {
+          form.style.display = 'block';
+          cta.style.display = 'none';
+          // Smooth scroll to form
+          setTimeout(() => {
+            form.scrollIntoView({ 
+              behavior: 'smooth',
+              block: 'center'
+            });
+          }, 100);
+        }
+      };
+      
+      window.hideContactForm = function() {
+        const form = document.getElementById('contactForm');
+        const cta = document.getElementById('initialCTA');
+        if (form && cta) {
+          form.style.display = 'none';
+          cta.style.display = 'block';
+        }
+      };
+      
+      // Privacy panel functions
       window.openPrivacyPanel = function(type) {
         const content = {
           privacy: `
@@ -1381,31 +1657,14 @@
         }
       });
       
-      // Intersection Observer for animations
-      if ('IntersectionObserver' in window) {
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.style.opacity = '1';
-              entry.target.style.transform = 'translateY(0)';
-              observer.unobserve(entry.target);
-            }
-          });
-        }, observerOptions);
-        
-        document.querySelectorAll('.service-card').forEach(card => {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(20px)';
-          card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-          observer.observe(card);
+      // Initialize on DOM ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          console.log('Strategic Fund Partners website initialized');
         });
+      } else {
+        console.log('Strategic Fund Partners website initialized');
       }
-      
     })();
   </script>
 </body>
