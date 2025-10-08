@@ -337,6 +337,10 @@
       letter-spacing:0.02em;
     }
     
+    .hero-subtitle-line{
+      display:block;
+    }
+    
     .hero-cta{
       display:flex;
       gap:1.5rem;
@@ -1320,7 +1324,7 @@
         <span></span>
       </button>
       
-      <a href="#contact" class="cta-nav">Start Conversation</a>
+      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ21Bp23fIf0-8CWI6LvBUlR_LvGg2nuP5jXz4BFcCnzintnxEHdzarI54pXAzwqVQTBWfI3OEkz" target="_blank" rel="noopener noreferrer" class="cta-nav">Book Free Consultation</a>
     </div>
   </nav>
 
@@ -1329,7 +1333,7 @@
       <div class="hero-container">
         <div class="hero-content">
           <h1 class="hero-title">Strategic Guidance<br>For Fund Managers</h1>
-          <p class="hero-subtitle">Navigate complex regulations, optimize fund structures, and scale with confidence. Specialized advisory for private funds.</p>
+          <p class="hero-subtitle">Navigate complex regulations, optimize fund structures, and scale with confidence.<br><span class="hero-subtitle-line">Specialized advisory for private funds.</span></p>
           <div class="hero-cta">
             <a href="#contact" class="btn btn-primary">Discuss Your Needs</a>
             <a href="#services" class="btn btn-secondary">Our Approach</a>
@@ -1590,14 +1594,12 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
       
-      // Contact form functions - now properly defined in global scope
       window.showContactForm = function() {
         const form = document.getElementById('contactForm');
         const cta = document.getElementById('initialCTA');
         if (form && cta) {
           form.style.display = 'block';
           cta.style.display = 'none';
-          // Smooth scroll to form
           setTimeout(() => {
             form.scrollIntoView({ 
               behavior: 'smooth',
@@ -1616,33 +1618,6 @@
         }
       };
       
-      // Contact form functions - properly defined in global scope
-      window.showContactForm = function() {
-        const form = document.getElementById('contactForm');
-        const cta = document.getElementById('initialCTA');
-        if (form && cta) {
-          form.style.display = 'block';
-          cta.style.display = 'none';
-          // Smooth scroll to form
-          setTimeout(() => {
-            form.scrollIntoView({ 
-              behavior: 'smooth',
-              block: 'center'
-            });
-          }, 100);
-        }
-      };
-      
-      window.hideContactForm = function() {
-        const form = document.getElementById('contactForm');
-        const cta = document.getElementById('initialCTA');
-        if (form && cta) {
-          form.style.display = 'none';
-          cta.style.display = 'block';
-        }
-      };
-      
-      // Reset form function
       window.resetContactForm = function() {
         const form = document.getElementById('contactForm');
         if (form) {
@@ -1688,12 +1663,10 @@
             <p class="contact-note">Confidential consultation</p>
           `;
           
-          // Re-add the form submission event listener
           setupFormHandler(form);
         }
       };
       
-      // Form submission handler
       function setupFormHandler(form) {
         form.addEventListener('submit', async function(e) {
           e.preventDefault();
@@ -1701,7 +1674,6 @@
           const submitBtn = form.querySelector('.form-submit');
           const originalText = submitBtn.textContent;
           
-          // Show loading state
           submitBtn.textContent = 'Sending...';
           submitBtn.disabled = true;
           
@@ -1716,7 +1688,6 @@
             });
             
             if (response.ok) {
-              // Show success message
               form.innerHTML = `
                 <div style="text-align:center;padding:4rem 2rem;">
                   <div style="width:80px;height:80px;margin:0 auto 2rem;border-radius:50%;background:linear-gradient(135deg,rgba(212,175,55,0.1),rgba(212,175,55,0.05));border:2px solid rgba(212,175,55,0.3);display:flex;align-items:center;justify-content:center;">
@@ -1733,7 +1704,6 @@
               throw new Error('Form submission failed');
             }
           } catch (error) {
-            // Show error message
             submitBtn.textContent = 'Error - Try Again';
             submitBtn.disabled = false;
             setTimeout(() => {
@@ -1743,13 +1713,11 @@
         });
       }
       
-      // Handle form submission for initial form
       const contactForm = document.getElementById('contactForm');
       if (contactForm) {
         setupFormHandler(contactForm);
       }
       
-      // Privacy panel functions
       window.openPrivacyPanel = function(type) {
         const content = {
           privacy: `
@@ -1822,7 +1790,6 @@
         dom.body.style.overflow = '';
       };
       
-      // Keyboard navigation
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
           closePrivacyPanel();
@@ -1834,7 +1801,6 @@
         }
       });
       
-      // Initialize on DOM ready
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
           console.log('Strategic Fund Partners website initialized');
